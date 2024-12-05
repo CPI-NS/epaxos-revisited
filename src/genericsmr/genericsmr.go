@@ -3,17 +3,17 @@ package genericsmr
 import (
 	"bufio"
 	"encoding/binary"
-	"fastrpc"
+	"github.com/PlatformLab/epaxos-revisited/src/fastrpc"
 	"fmt"
-	"genericsmrproto"
+	"github.com/PlatformLab/epaxos-revisited/src/genericsmrproto"
 	"io"
 	"log"
 	"net"
 	"os"
-	"rdtsc"
-	"state"
+	"github.com/PlatformLab/epaxos-revisited/src/rdtsc"
+	"github.com/PlatformLab/epaxos-revisited/src/state"
 	"time"
-	"timetrace"
+	"github.com/PlatformLab/epaxos-revisited/src/timetrace"
 )
 
 const CHAN_BUFFER_SIZE = 200000
@@ -173,7 +173,14 @@ func (r *Replica) waitForPeerConnections(done chan bool) {
 	var b [4]byte
 	bs := b[:4]
 
-	r.Listener, _ = net.Listen("tcp", r.PeerAddrList[r.Id])
+  //r.Listener, _ = net.Listen("tcp", r.PeerAddrList[r.Id])
+  var err error
+  port := r.PeerAddrList[r.Id][len(r.PeerAddrList[r.Id])-4:]
+  r.Listener, err = net.Listen("tcp", fmt.Sprintf(":%s",port))
+  if err != nil {
+    fmt.Println("Listen Error on", r.PeerAddrList[r.Id], " ", err)
+  }
+
 	for i := r.Id + 1; i < int32(r.N); i++ {
 		conn, err := r.Listener.Accept()
 		if err != nil {

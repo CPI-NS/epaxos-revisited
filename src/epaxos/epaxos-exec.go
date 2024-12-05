@@ -1,10 +1,10 @@
 package epaxos
 
 import (
-	"epaxosproto"
-	"genericsmrproto"
+	"github.com/PlatformLab/epaxos-revisited/src/epaxosproto"
+	"github.com/PlatformLab/epaxos-revisited/src/genericsmrproto"
 	"sort"
-	"state"
+	"github.com/PlatformLab/epaxos-revisited/src/state"
 	"time"
 )
 

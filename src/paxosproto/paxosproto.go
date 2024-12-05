@@ -1,7 +1,7 @@
 package paxosproto
 
 import (
-	"state"
+	"github.com/PlatformLab/epaxos-revisited/src/state"
 )
 
 const (

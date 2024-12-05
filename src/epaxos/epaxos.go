@@ -2,17 +2,17 @@ package epaxos
 
 import (
 	"encoding/binary"
-	"epaxosproto"
-	"genericsmr"
-	"genericsmrproto"
+	"github.com/PlatformLab/epaxos-revisited/src/epaxosproto"
+	"github.com/PlatformLab/epaxos-revisited/src/genericsmr"
+	"github.com/PlatformLab/epaxos-revisited/src/genericsmrproto"
 	"io"
 	"log"
-	"priorityqueue"
+	"github.com/PlatformLab/epaxos-revisited/src/priorityqueue"
 	"sort"
-	"state"
+	"github.com/PlatformLab/epaxos-revisited/src/state"
 	"sync"
 	"time"
-	"timetrace"
+	"github.com/PlatformLab/epaxos-revisited/src/timetrace"
 )
 
 const MAX_DEPTH_DEP = 10

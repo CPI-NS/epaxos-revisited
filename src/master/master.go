@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"genericsmrproto"
+	"github.com/PlatformLab/epaxos-revisited/src/genericsmrproto"
 	"log"
-	"masterproto"
+	"github.com/PlatformLab/epaxos-revisited/src/masterproto"
 	"net"
 	"net/http"
 	"net/rpc"

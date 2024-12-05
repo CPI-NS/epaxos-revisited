@@ -1,7 +1,7 @@
 package epaxosproto
 
 import (
-	"state"
+	"github.com/PlatformLab/epaxos-revisited/src/state"
 )
 
 type Prepare struct {

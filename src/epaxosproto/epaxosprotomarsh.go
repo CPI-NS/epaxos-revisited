@@ -3,9 +3,9 @@ package epaxosproto
 import (
 	"bufio"
 	"encoding/binary"
-	"fastrpc"
+	"github.com/PlatformLab/epaxos-revisited/src/fastrpc"
 	"io"
-	"state"
+	"github.com/PlatformLab/epaxos-revisited/src/state"
 )
 
 type byteReader interface {

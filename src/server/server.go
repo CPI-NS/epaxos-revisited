@@ -1,17 +1,17 @@
 package main
 
 import (
-	"epaxos"
+	"github.com/PlatformLab/epaxos-revisited/src/epaxos"
 	"flag"
 	"fmt"
 	"log"
-	"masterproto"
+	"github.com/PlatformLab/epaxos-revisited/src/masterproto"
 	"net"
 	"net/http"
 	"net/rpc"
 	"os"
 	"os/signal"
-	"paxos"
+	"github.com/PlatformLab/epaxos-revisited/src/paxos"
 	"runtime"
 	"runtime/pprof"
 	"time"

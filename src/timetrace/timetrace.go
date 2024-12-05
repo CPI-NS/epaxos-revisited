@@ -1,7 +1,7 @@
 package timetrace
 
 import (
-	"cycles"
+	"github.com/PlatformLab/epaxos-revisited/src/cycles"
 	"fmt"
 	"log"
 	"os"

@@ -283,6 +283,7 @@ func Set(key int64, values []int32) int {
 }
 
 func batchPut(keys []int64, _ []int32, values[]int32, _ int, batch_size int) int { 
+  fmt.Println("BatchPut Start")
 	args := genericsmrproto.Propose{id, state.Command{state.PUT, 0, 0}, 0}
   args.CommandId = id
   //if put[i] {
@@ -318,7 +319,7 @@ func batchPut(keys []int64, _ []int32, values[]int32, _ int, batch_size int) int
         leader , _ = strconv.Atoi(leaderEnvVar)
       }
      
-      //fmt.Println("Sending batch to leader: ", leader)
+//      fmt.Println("Sending batch to leader: ", leader)
       writers[leader].WriteByte(genericsmrproto.PROPOSE)
       args.Marshal(writers[leader])
     } else {
@@ -353,6 +354,7 @@ func batchPut(keys []int64, _ []int32, values[]int32, _ int, batch_size int) int
   }
 
   err := false
+ // fmt.Println("Waiting on reply from replicas")
   if *noLeader {
     //for i := 0; i < N; i++ {
       e := <-done
@@ -362,6 +364,7 @@ func batchPut(keys []int64, _ []int32, values[]int32, _ int, batch_size int) int
     err = <-done
   }
 
+  fmt.Println("BatchPUt end")
   if err {
     if *noLeader {
       N = N - 1
@@ -402,14 +405,14 @@ func waitReplies(readers []*bufio.Reader, leader int, n int, done chan bool) {
   reply := new(genericsmrproto.ProposeReply)
   //fmt.Println("right before for loop")
   for i := 0; i < n; i++ {
-   // fmt.Println("Waiting for replies...")
+ //   fmt.Println("Waiting for replies...")
 		if err := reply.Unmarshal(readers[leader]); err != nil {
 			fmt.Println("Error when reading:", err)
 			e = true
 			continue
-		}// else {
-   //   fmt.Println("Got reply")
-   // }
+		} //else {
+ //     fmt.Println("Got reply")
+ //   }
   //  fmt.Println(reply.OK)
   //  fmt.Println(reply.CommandId)
 	//	fmt.Println(reply.Value)

@@ -13,7 +13,7 @@ import (
 	"sync"
 	"time"
 	"github.com/PlatformLab/epaxos-revisited/src/timetrace"
-  "fmt"
+//  "fmt"
 )
 
 const MAX_DEPTH_DEP = 10
@@ -351,7 +351,6 @@ func (r *Replica) run() {
 
 		case propose := <-onOffProposeChan:
 			//got a Propose from a client
-      fmt.Println("Recived Proposal")
 			r.handlePropose(propose)
 			//deactivate new proposals channel to prioritize the handling of other protocol messages,
 			//and to allow commands to accumulate for batching
@@ -689,7 +688,7 @@ func (r *Replica) bcastPrepare(replica int32, instance int32, ballot int32) {
 }
 
 func (r *Replica) bcastPreAccept(replica int32, instance int32, ballot int32, cmds []state.Command, seq int32, deps [DS]int32) {
-  fmt.Println("Broadcasting Preaccept")
+  //fmt.Println("Broadcasting Preaccept")
 	defer func() {
 		if err := recover(); err != nil {
 			log.Println("PreAccept bcast failed:", err)
@@ -946,7 +945,7 @@ func equal(deps1 *[DS]int32, deps2 *[DS]int32) bool {
 func (r *Replica) handlePropose(propose *genericsmr.Propose) {
 	//TODO!! Handle client retries
 
-  fmt.Println("Handling Proposal")
+  //fmt.Println("Handling Proposal")
 
 	batchSize := 1
 	if r.batchingEnabled {
@@ -977,7 +976,7 @@ func (r *Replica) handlePropose(propose *genericsmr.Propose) {
 
 func (r *Replica) startPhase1(replica int32, instance int32, ballot int32, proposals []*genericsmr.Propose, cmds []state.Command, batchSize int) {
 	//init command attributes
-  fmt.Println("Starting Phase1")
+  //fmt.Println("Starting Phase1")
 
 	seq := int32(0)
 	var deps [DS]int32

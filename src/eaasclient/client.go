@@ -283,7 +283,6 @@ func Set(key int64, values []int32) int {
 }
 
 func batchPut(keys []int64, _ []int32, values[]int32, _ int, batch_size int) int { 
-  fmt.Println("BatchPut Start")
 	args := genericsmrproto.Propose{id, state.Command{state.PUT, 0, 0}, 0}
   args.CommandId = id
   //if put[i] {
@@ -364,7 +363,6 @@ func batchPut(keys []int64, _ []int32, values[]int32, _ int, batch_size int) int
     err = <-done
   }
 
-  fmt.Println("BatchPUt end")
   if err {
     if *noLeader {
       N = N - 1
